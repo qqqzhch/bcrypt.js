@@ -64,6 +64,7 @@ bcrypt.setRandomFallback = function(random) {
  * Synchronously generates a salt.
  * @param {number=} rounds Number of rounds to use, defaults to 10 if omitted
  * @param {number=} seed_length Not supported.
+ * @param {string=} random16Str Not supported.
  * @returns {string} Resulting salt
  * @throws {Error} If a random fallback is required but not set
  */
