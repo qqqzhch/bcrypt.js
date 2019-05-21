@@ -104,10 +104,11 @@
      * Synchronously generates a salt.
      * @param {number=} rounds Number of rounds to use, defaults to 10 if omitted
      * @param {number=} seed_length Not supported.
+     * @param {string=} random16Str Not supported.
      * @returns {string} Resulting salt
      * @throws {Error} If a random fallback is required but not set
      */
-    bcrypt.genSaltSync = function(rounds, seed_length) {
+    bcrypt.genSaltSync = function(rounds, seed_length,random16Str) {
         rounds = rounds || GENSALT_DEFAULT_LOG2_ROUNDS;
         if (typeof rounds !== 'number')
             throw Error("Illegal arguments: "+(typeof rounds)+", "+(typeof seed_length));
@@ -121,7 +122,7 @@
             salt.push("0");
         salt.push(rounds.toString());
         salt.push('$');
-        salt.push(base64_encode(random(BCRYPT_SALT_LEN), BCRYPT_SALT_LEN)); // May throw
+        salt.push(base64_encode(random16Str, BCRYPT_SALT_LEN)); // May throw
         return salt.join('');
     };
 
